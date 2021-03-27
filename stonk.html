@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stonk</title>
+</head>
+<body>
+    
+    <div id="buying">
+        <button id="color" onclick="color()">STONKS</button><br>
+        
+        <h2 id="price">Buy Price</h2>
+        <input id="stockprice" type="text" placeholder="Stonk Price"> 
+        <input id="sharenum" type="text" placeholder="Share amount"><br>
+        <button id="calculate" onclick="calculate()">Calculate</button>
+        <button id="reset" onclick="reset()">Reset</button>
+
+        
+    </div>
+    <div id="selling">
+        
+        <h2 id="sellprice">Sell Price</h2>
+        <input id="stocksellprice" type="text" placeholder="Stonk Sell Price"> 
+        <input id="sellsharenum" type="text" placeholder="Share amount"><br>
+        <button id="calculatesell" onclick="calculatesell()">Calculate</button>
+        <button id="resetsell" onclick="resetsell()">Reset</button>
+        
+
+        
+    </div>
+
+    <div id="gainloss">
+        <br><br><br>
+        
+        <h1 id="difference">Gain or Loss?</h1>
+        <input id="soldvalue" type="text" placeholder="Sold Value"><input id="boughtvalue" type="text" placeholder="Bought Value">
+        <button onclick="gainloss()">G/L</button><button onclick="resetcalc()">Reset</button><br>
+        <h1 id="gloutput">0</h1>
+
+
+
+    </div>
+    
+    <button onclick="bigReset()">BIG RESET</button>
+    <div id="image">
+        <img id="stonkimg" src="stonks.jpeg" alt="oops">
+
+
+    </div>
+    
+</body>
+
+
+    <script>
+        function calculate() {
+            var price;
+            var stockprice;
+            var stockamt;
+            stockprice = document.getElementById("stockprice").value;
+            stockamt = document.getElementById("sharenum").value;
+            price = parseFloat(stockamt * stockprice);
+            document.getElementById("price").innerHTML = price;
+            
+        }
+        function reset() {
+            document.getElementById("price").innerHTML = "Price";
+            document.getElementById("stockprice").value = "";
+            document.getElementById("sharenum").value = "";
+            
+
+        }
+
+        function calculatesell() {
+            var sellprice;
+            var stocksellprice;
+            var sellstockamt;
+            stocksellprice = document.getElementById("stocksellprice").value;
+            sellstockamt = document.getElementById("sellsharenum").value;
+            sellprice = parseFloat(sellstockamt * stocksellprice);
+            document.getElementById("sellprice").innerHTML = sellprice;
+            
+
+        }
+
+        function resetsell() {
+            document.getElementById("sellprice").innerHTML = "Price";
+            document.getElementById("stocksellprice").value = "";
+            document.getElementById("sellsharenum").value = "";
+        }
+
+        function gainloss() {
+            var s = document.getElementById("soldvalue").value;
+            var b = document.getElementById("boughtvalue").value;
+            var gorl = parseFloat(s - b);
+            document.getElementById("gloutput").innerHTML = gorl;
+            if (Math.sign(gorl) == 1) {
+                document.getElementById("gloutput").style.color = "green";
+
+            }
+            if (Math.sign(gorl) == -1) {
+                document.getElementById("gloutput").style.color = "red";
+
+            }
+            
+            
+        }
+        function resetcalc() {
+            document.getElementById("soldvalue").value = "";
+            document.getElementById("boughtvalue").value = "";
+            document.getElementById("gloutput").style.color = "black";
+            document.getElementById("gloutput").innerHTML = 0;
+        }
+
+        function color() {
+            var a = Math.floor(Math.random() * 10);
+            if (a % 2 == 0) {
+                document.getElementById("color").style.color = "green";
+                document.body.style.backgroundColor = "green"
+            }
+            if (a % 2 == 1) {
+                document.getElementById("color").style.color = "red";
+                document.body.style.backgroundColor = "red"
+            }
+
+            
+            
+            
+        }
+        function bigReset() {
+            reset();
+            resetsell();
+            resetcalc();
+            document.body.style.backgroundColor = "white";
+            document.getElementById("color").style.color = "black";
+
+        }
+
+    </script>
+
+    <style>
+        #image {
+            text-align: right;
+            padding-right: 2in;
+        }
+
+        #stonkimg {
+            height: 200px;
+            width: 500px;
+            padding-bottom: 1in;
+        }
+
+    </style>
+
+
+</html>
